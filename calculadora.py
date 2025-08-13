@@ -20,6 +20,7 @@ entrada.pack(fill="both", padx=10, pady=10, ipady=10)
 def ignorar_digitacao(event):
     return "break"
 
+
 entrada.bind("<Key>", ignorar_digitacao)
 
 # Histórico
@@ -32,6 +33,7 @@ def atualizar_historico(nova_operacao):
     if len(historico_operacoes) > 3:
         historico_operacoes.pop(0)
     historico.config(text="\n".join(historico_operacoes))
+
 
 def adicionar_caractere(caractere):
     global calculo_concluido
@@ -46,15 +48,18 @@ def adicionar_caractere(caractere):
         calculo_concluido = False
     entrada.insert(tk.INSERT, caractere)
 
+
 def apagar_digito():
     conteudo_atual = entrada.get()
     if conteudo_atual: # Verifica se a caixa de entrada não está vazia
         entrada.delete(len(conteudo_atual) - 1, tk.END)
 
+
 def reiniciar_entrada():
     global calculo_concluido
     entrada.delete(0, tk.END)
     calculo_concluido = False
+
 
 def adicionar_ponto():
     conteudo = entrada.get()
@@ -64,6 +69,7 @@ def adicionar_ponto():
         adicionar_caractere("0.")
     else:
         adicionar_caractere(".")
+
 
 def calcular():
     try:
@@ -86,6 +92,7 @@ def calcular():
         entrada.insert(tk.END, "Erro ")
         calculo_concluido = True
 
+
 def inserir_raiz():
     global calculo_concluido
     conteudo_atual = entrada.get()
@@ -95,6 +102,7 @@ def inserir_raiz():
     entrada.insert(tk.INSERT, "sqrt()")
     entrada.icursor(entrada.index(tk.INSERT) - 1)
     entrada.focus_set()
+
 
 def inserir_expoente():
     conteudo = entrada.get()
